@@ -9,8 +9,8 @@
 
 const taskInput = document.getElementById("new-task"); //Add a new task.
 const addButton = document.getElementsByTagName("button")[0]; //first button
-const incompleteTaskHolder = document.getElementById("incompleteTasks"); //ul of #incompleteTasks
-const completedTasksHolder = document.getElementById("completed-tasks"); //completed-tasks
+const incomleteTaskList = document.getElementById("incompleteTasks");
+const completedTasksList = document.getElementById("completed-tasks");
 
 //New task list item
 const createNewTaskElement = function (taskString) {
@@ -58,8 +58,8 @@ const addTask = function () {
   if (!taskInput.value) return;
   const listItem = createNewTaskElement(taskInput.value);
 
-  //Append listItem to incompleteTaskHolder
-  incompleteTaskHolder.appendChild(listItem);
+  //Append listItem to incomleteTaskList
+  incomleteTaskList.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
 
   taskInput.value = "";
@@ -105,14 +105,14 @@ const moveTask = (listItem, targetList, checkBoxEventHandler) => {
 //Mark task completed
 const taskCompleted = function () {
   //Append the task list item to the #completed-tasks
-  moveTask(this.parentNode, completedTasksHolder, taskIncomplete);
+  moveTask(this.parentNode, completedTasksList, taskIncomplete);
 };
 
 const taskIncomplete = function () {
   //Mark task as incomplete.
   //When the checkbox is unchecked
   //Append the task list item to the #incompleteTasks.
-  moveTask(this.parentNode, incompleteTaskHolder, taskCompleted);
+  moveTask(this.parentNode, incomleteTaskList, taskCompleted);
 };
 
 //The glue to hold it all together.
@@ -140,8 +140,8 @@ const bindListEvents = (taskList, checkBoxEventHandler) => {
   }
 };
 
-bindListEvents(incompleteTaskHolder, taskCompleted);
-bindListEvents(completedTasksHolder, taskIncomplete);
+bindListEvents(incomleteTaskList, taskCompleted);
+bindListEvents(completedTasksList, taskIncomplete);
 
 // Issues with usability don't get seen until they are in front of a human tester.
 
