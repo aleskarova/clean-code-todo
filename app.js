@@ -3,36 +3,52 @@ const addButton = document.getElementsByTagName("button")[0];
 const incomleteTaskList = document.getElementById("incompleteTasks");
 const completedTasksList = document.getElementById("completed-tasks");
 
-const createTaskElement = function (taskText) {
-  const listItem = document.createElement("li");
-
+const createTaskCheckbox = () => {
   const checkBox = document.createElement("input");
+  checkBox.type = "checkbox";
+  return checkBox;
+};
+
+const createTaskLabel = (taskText) => {
   const label = document.createElement("label");
-  const editInput = document.createElement("input");
-  const editButton = document.createElement("button");
-
-  const deleteButton = document.createElement("button");
-  const deleteButtonImg = document.createElement("img");
-
   label.innerText = taskText;
   label.className = "task";
+  return label;
+};
 
-  checkBox.type = "checkbox";
+const createTaskEditInput = () => {
+  const editInput = document.createElement("input");
   editInput.type = "text";
   editInput.className = "task";
+  return editInput;
+};
 
+const createTaskEditButton = () => {
+  const editButton = document.createElement("button");
   editButton.innerText = "Edit";
   editButton.className = "edit";
+  return editButton;
+};
 
+const createTaskDeleteButton = () => {
+  const deleteButton = document.createElement("button");
+  const deleteButtonImg = document.createElement("img");
   deleteButton.className = "delete";
   deleteButtonImg.src = "./remove.svg";
   deleteButton.appendChild(deleteButtonImg);
+  return deleteButton;
+};
 
-  listItem.appendChild(checkBox);
-  listItem.appendChild(label);
-  listItem.appendChild(editInput);
-  listItem.appendChild(editButton);
-  listItem.appendChild(deleteButton);
+const createTaskElement = function (taskText) {
+  const listItem = document.createElement("li");
+
+  const checkBox = createTaskCheckbox();
+  const label = createTaskLabel(taskText);
+  const editInput = createTaskEditInput();
+  const editButton = createTaskEditButton();
+  const deleteButton = createTaskDeleteButton();
+
+  listItem.append(checkBox, label, editInput, editButton, deleteButton);
   return listItem;
 };
 
