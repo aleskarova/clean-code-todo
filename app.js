@@ -60,7 +60,7 @@ const addTask = function () {
 
   //Append listItem to incomleteTaskList
   incomleteTaskList.appendChild(listItem);
-  bindTaskEvents(listItem, taskCompleted);
+  bindTaskEvents(listItem, markTaskCompleted);
 
   taskInput.value = "";
 };
@@ -103,16 +103,16 @@ const moveTask = (listItem, targetList, checkBoxEventHandler) => {
 };
 
 //Mark task completed
-const taskCompleted = function () {
+const markTaskCompleted = function () {
   //Append the task list item to the #completed-tasks
-  moveTask(this.parentNode, completedTasksList, taskIncomplete);
+  moveTask(this.parentNode, completedTasksList, markTaskIncomplete);
 };
 
-const taskIncomplete = function () {
+const markTaskIncomplete = function () {
   //Mark task as incomplete.
   //When the checkbox is unchecked
   //Append the task list item to the #incompleteTasks.
-  moveTask(this.parentNode, incomleteTaskList, taskCompleted);
+  moveTask(this.parentNode, incomleteTaskList, markTaskCompleted);
 };
 
 //The glue to hold it all together.
@@ -140,8 +140,8 @@ const bindListEvents = (taskList, checkBoxEventHandler) => {
   }
 };
 
-bindListEvents(incomleteTaskList, taskCompleted);
-bindListEvents(completedTasksList, taskIncomplete);
+bindListEvents(incomleteTaskList, markTaskCompleted);
+bindListEvents(completedTasksList, markTaskIncomplete);
 
 // Issues with usability don't get seen until they are in front of a human tester.
 
