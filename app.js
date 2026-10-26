@@ -3,7 +3,7 @@ const addButton = document.getElementsByTagName("button")[0];
 const incomleteTaskList = document.getElementById("incompleteTasks");
 const completedTasksList = document.getElementById("completed-tasks");
 
-const createTaskElement = function (taskString) {
+const createTaskElement = function (taskText) {
   const listItem = document.createElement("li");
 
   const checkBox = document.createElement("input");
@@ -14,7 +14,7 @@ const createTaskElement = function (taskString) {
   const deleteButton = document.createElement("button");
   const deleteButtonImg = document.createElement("img");
 
-  label.innerText = taskString;
+  label.innerText = taskText;
   label.className = "task";
 
   checkBox.type = "checkbox";
